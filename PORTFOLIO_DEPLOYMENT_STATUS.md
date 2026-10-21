@@ -1,6 +1,6 @@
 # Portfolio Deployment Status
 
-**Last updated:** 2026-10-21 20:00 UTC  
+**Last updated:** 2026-10-21 20:08 UTC  
 **Current phase:** Local implementation and verification complete. Repository creation/push and hosting deployment are **blocked on owner authentication** in this environment.
 
 ## Source inspected
@@ -59,13 +59,16 @@ Screenshots were rendered and inspected at desktop and mobile widths.
 
 - Local repository initialised on branch `main`.
 - Local identity is repository-scoped (GitHub noreply address); no global Git config was changed.
-- Commit hash: see the latest `git log` output in the final handoff / after the status-verification commit.
-- **Remote has not been added yet.** The only permitted remote is:
+- Initial commit: `773e5df` — `Initial production-ready personal portfolio`.
+- The only remote is `origin`, pointing only to:
   `https://github.com/MuthakeenAnsari/muthakeenansari-portfolio.git`
 - Public GitHub API check on 2026-10-21 19:59 UTC:
   - Account `MuthakeenAnsari` exists.
   - Repository `muthakeenansari-portfolio` returned **404 / available**.
-- No push, force-push, remote change or repository creation occurred.
+- A real push/ls-remote attempt at 2026-10-21 20:02 UTC failed with
+  `could not read Username for 'https://github.com': terminal prompts disabled`.
+  No credentials were available, so the repository was **not created** and **nothing was pushed**.
+- No force-push, repository rewrite or remote change occurred.
 
 ## Hosting
 
@@ -77,21 +80,22 @@ Screenshots were rendered and inspected at desktop and mobile widths.
 
 ### 1. Authorise GitHub (owner action required)
 
-Either install/authenticate GitHub CLI and run:
+Authenticate GitHub CLI, create the empty public repository, then push the existing local commit:
 
 ```bash
 gh auth login --hostname github.com --git-protocol https --web
 gh repo create MuthakeenAnsari/muthakeenansari-portfolio --public \
-  --description "Personal portfolio for Muthakeen Ansari M — QA automation, cybersecurity and NGIULS." \
-  --source=. --remote=origin --push
-```
-
-Or create the public repository in the GitHub web UI, then from this project directory:
-
-```bash
-git remote add origin https://github.com/MuthakeenAnsari/muthakeenansari-portfolio.git
+  --description "Personal portfolio for Muthakeen Ansari M — QA automation, cybersecurity and NGIULS."
 git push -u origin main
 ```
+
+Or create the public repository in the GitHub web UI, then from this project directory (the `origin` remote is already set):
+
+```bash
+git push -u origin main
+```
+
+Do **not** run `gh repo create --source=. --remote=origin` here unless the existing `origin` is removed first; the remote is already configured.
 
 Then verify:
 
