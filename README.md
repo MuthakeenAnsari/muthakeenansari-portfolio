@@ -4,7 +4,7 @@ A single-page static portfolio for **Muthakeen Ansari M** covering QA automation
 
 The site is plain HTML, CSS and JavaScript. There is no build step, backend, database, framework runtime or package dependency.
 
-> **Publication status:** production-ready locally and fully tested, but **not yet published**. GitHub and Cloudflare authentication were not configured in the creating environment. See [`PORTFOLIO_DEPLOYMENT_STATUS.md`](PORTFOLIO_DEPLOYMENT_STATUS.md) for the exact remaining steps.
+> **Live site:** <https://muthakeenansari.github.io/muthakeenansari-portfolio/> — published with GitHub Pages from `main` / root. See [`PORTFOLIO_DEPLOYMENT_STATUS.md`](PORTFOLIO_DEPLOYMENT_STATUS.md) for deployment and verification details.
 
 ## Preview locally
 
@@ -82,29 +82,31 @@ The Contact section contains five real actions and no form:
 
 ## Deployment
 
-### Cloudflare Pages (preferred, free static plan)
+### GitHub Pages (current deployment, free)
 
-1. Push this repository to GitHub under the personal account `MuthakeenAnsari`.
-2. In the Cloudflare dashboard open **Workers & Pages → Create → Pages → Connect to Git**.
-3. Authorize GitHub access for the Cloudflare account if prompted.
-4. Select the `muthakeenansari-portfolio` repository.
-5. Use production branch `main`, framework preset **None**, leave the build command empty, and set the build output directory to `/` (the repository root).
-6. Save and deploy. Cloudflare assigns a free `*.pages.dev` address.
-7. Open the assigned URL and verify the page, assets and contact links before treating it as published.
+**Live URL:** <https://muthakeenansari.github.io/muthakeenansari-portfolio/>
+
+- Repository: <https://github.com/MuthakeenAnsari/muthakeenansari-portfolio>
+- Source: branch `main`, folder `/ (root)`, no build step.
+- Pushing to `main` triggers a new Pages build automatically.
+- The `.nojekyll` file is present so files and folders are served as-is.
+
+GitHub Pages has documented soft bandwidth and size limits (currently around 100 GB per month for the free service); consult the [current limits](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits). Do not treat any free host as an unlimited or guaranteed-uptime service.
+
+### Cloudflare Pages (optional migration, free static plan)
+
+The site can be moved to Cloudflare Pages later without code changes:
+
+1. In the Cloudflare dashboard open **Workers & Pages → Create → Pages → Connect to Git**.
+2. Authorize GitHub access for the Cloudflare account if prompted.
+3. Select the `muthakeenansari-portfolio` repository.
+4. Use production branch `main`, framework preset **None**, leave the build command empty, and set the build output directory to `/` (the repository root).
+5. Save and deploy. Cloudflare assigns a free `*.pages.dev` address.
+6. Open the assigned URL and verify the page, assets and contact links before treating it as published.
 
 No Functions, Worker, database or paid add-on is required. Cloudflare's free plan still has build, file-count and file-size limits; static asset delivery is documented as free and unlimited, but uptime and traffic are still subject to the provider's terms.
 
 Official references: [Git integration](https://developers.cloudflare.com/pages/configuration/git-integration/), [limits](https://developers.cloudflare.com/pages/platform/limits/), [Functions pricing/static assets](https://developers.cloudflare.com/pages/functions/pricing/).
-
-### GitHub Pages (free fallback)
-
-If Cloudflare Pages is not used, GitHub Pages can serve this static site from the repository root:
-
-1. Repository **Settings → Pages**.
-2. Source: **Deploy from a branch**, branch `main`, folder `/ (root)`.
-3. Save and wait for the Pages deployment, then verify the URL.
-
-GitHub Pages has documented soft bandwidth and size limits (currently around 100 GB per month for the free service); consult the [current limits](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits). Do not treat any free host as an unlimited or guaranteed-uptime service.
 
 ## Assets and attribution
 
